@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting to LinkedIn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    const username = "john-matthew-sardilla"; // Replace with your LinkedIn username
+
+    function redirect() {
+      const ua = navigator.userAgent;
+      const ios = /iPhone|iPad|iPod/i.test(ua);
+      const android = /Android/i.test(ua);
+
+      if (ios) {
+        window.location.href = `linkedin://in/${username}`;
+        setTimeout(() => {
+          window.location.href = `https://www.linkedin.com/in/${username}`;
+        }, 1500);
+      } else if (android) {
+        window.location.href = `intent://linkedin.com/in/${username}#Intent;package=com.linkedin.android;scheme=https;end`;
+      } else {
+        window.location.href = `https://www.linkedin.com/in/${username}`;
+      }
+    }
+
+    window.onload = redirect;
+  </script>
+</head>
+<body>
+  <p>Redirecting to LinkedIn...</p>
+</body>
+</html>
